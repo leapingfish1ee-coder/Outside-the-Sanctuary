@@ -7,10 +7,19 @@
   <style>
     *{box-sizing:border-box}
     html,body{margin:0;width:100%;height:100%}
-    body{position:relative;display:grid;place-items:center;overflow:hidden;background:#fff;color:#000}
-    main{text-align:center}
-    h1{margin:0;font-family:SimSun,"宋体",serif;font-size:42px;font-weight:400}
-    p{margin:12px 0 0;font-family:SimHei,"黑体",sans-serif;font-size:18px;font-weight:400}
+    body{position:relative;overflow:hidden;background:#fff;color:#000;font-family:SimHei,"黑体",sans-serif}
+    .brand{position:absolute;left:4.1667vw;top:44px;text-align:left}
+    .brand h1{margin:0;font-family:SimSun,"宋体",serif;font-size:42px;font-weight:400;line-height:1}
+    .brand p{margin:10px 0 0;font-size:18px;font-weight:400;line-height:1}
+    .enemies{position:absolute;top:36px;left:50%;width:286px;transform:translateX(-50%);display:flex;flex-direction:column;gap:16px;font-family:SimSun,"宋体",serif}
+    .enemy{width:100%}
+    .enemy__meta{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:5px;font-size:12px;line-height:1;color:#777}
+    .enemy__name{color:#111;font-weight:700;letter-spacing:.08em}
+    .enemy__bar{position:relative;width:100%;height:7px;border:1px solid #111;background:#fff;overflow:hidden}
+    .enemy__fill{height:100%;background:linear-gradient(90deg,#d64b4b 0%,#8e3434 55%,#111 100%)}
+    .enemy:nth-child(1) .enemy__fill{width:100%}
+    .enemy:nth-child(2) .enemy__fill{width:76%}
+    .enemy:nth-child(3) .enemy__fill{width:43%}
     .attributes{position:absolute;left:4.1667vw;bottom:5.6vh;width:458px;height:340px;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
     .attributes__header{position:absolute;inset:0 auto auto 0;width:236px;height:28px;color:#808080;font-size:24px;font-weight:700}
     .attributes__header .label{position:absolute;left:0;top:0}
@@ -29,14 +38,59 @@
     .attr-will .name{background-image:linear-gradient(123deg,#3fc7d6 30%,#000 100%)}
     .attr-spirit .name{background-image:linear-gradient(123deg,#d8a03a 30%,#000 100%)}
     .attr-faith .name{background-image:linear-gradient(123deg,#e1ebeb 30%,#000 100%)}
-    @media(max-width:560px){.attributes{left:16px;bottom:28px;transform:scale(.72);transform-origin:left bottom}}
+    .skillbar{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);display:flex;gap:7px;padding:7px;border:1px solid #cfcfcf;background:rgba(255,255,255,.92);box-shadow:0 6px 20px rgba(0,0,0,.04);user-select:none}
+    .skill{position:relative;width:52px;height:52px;border:1px solid #111;background:#fff;overflow:hidden}
+    .skill::before{content:"";position:absolute;inset:7px;border:1px solid #111;border-radius:50%}
+    .skill::after{content:"";position:absolute;left:50%;top:50%;width:21px;height:21px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid #111}
+    .skill .key{position:absolute;right:3px;bottom:2px;z-index:2;font-size:10px;line-height:1;color:#555;font-family:Arial,sans-serif}
+    .skill:nth-child(2)::before{border-radius:0;transform:rotate(45deg)}
+    .skill:nth-child(3)::after{border-radius:50%;background:linear-gradient(135deg,#33c47a22,#0000)}
+    .skill:nth-child(4)::before{border-color:#5c6bff}
+    .skill:nth-child(5)::after{border-color:#3fc7d6}
+    .skill:nth-child(6)::before{border-color:#d8a03a}
+    .skill:nth-child(7)::after{border-color:#d64b4b}
+    .skill:nth-child(8)::before{background:linear-gradient(135deg,#e1ebeb,#fff)}
+    .skill:nth-child(9)::after{width:26px;height:12px;border-radius:50%;transform:translate(-50%,-50%)}
+    .skill:nth-child(10)::before{inset:10px;border-radius:0;transform:rotate(22.5deg)}
+    @media(max-width:1100px){
+      .brand{left:32px;top:28px}
+      .attributes{left:32px;bottom:28px;transform:scale(.82);transform-origin:left bottom}
+      .skillbar{bottom:26px;gap:4px;padding:5px}
+      .skill{width:42px;height:42px}
+    }
+    @media(max-width:760px){
+      body{overflow:auto;min-height:860px}
+      .brand{left:20px;top:22px}
+      .brand h1{font-size:32px}
+      .brand p{font-size:15px}
+      .enemies{top:118px;width:min(286px,calc(100vw - 40px))}
+      .attributes{left:20px;bottom:122px;transform:scale(.68);transform-origin:left bottom}
+      .skillbar{position:fixed;bottom:18px;max-width:calc(100vw - 24px);overflow-x:auto;gap:4px}
+      .skill{width:40px;height:40px;flex:0 0 40px}
+    }
   </style>
 </head>
 <body>
-  <main>
+  <header class="brand">
     <h1>Outside the Sanctuary</h1>
     <p>实验性游戏项目</p>
-  </main>
+  </header>
+
+  <section class="enemies" aria-label="敌人状态">
+    <div class="enemy">
+      <div class="enemy__meta"><span class="enemy__name">敌人 01</span><span>100%</span></div>
+      <div class="enemy__bar"><div class="enemy__fill"></div></div>
+    </div>
+    <div class="enemy">
+      <div class="enemy__meta"><span class="enemy__name">敌人 02</span><span>76%</span></div>
+      <div class="enemy__bar"><div class="enemy__fill"></div></div>
+    </div>
+    <div class="enemy">
+      <div class="enemy__meta"><span class="enemy__name">敌人 03</span><span>43%</span></div>
+      <div class="enemy__bar"><div class="enemy__fill"></div></div>
+    </div>
+  </section>
+
   <aside class="attributes" aria-label="角色属性">
     <div class="attributes__header"><span class="label">自由点数</span><span class="value">98760</span></div>
     <div class="attribute-row attr-strength"><span class="name">力量</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
@@ -46,5 +100,18 @@
     <div class="attribute-row attr-spirit"><span class="name">灵知</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
     <div class="attribute-row attr-faith"><span class="name">信仰</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
   </aside>
+
+  <nav class="skillbar" aria-label="技能栏">
+    <div class="skill"><span class="key">1</span></div>
+    <div class="skill"><span class="key">2</span></div>
+    <div class="skill"><span class="key">3</span></div>
+    <div class="skill"><span class="key">4</span></div>
+    <div class="skill"><span class="key">5</span></div>
+    <div class="skill"><span class="key">6</span></div>
+    <div class="skill"><span class="key">7</span></div>
+    <div class="skill"><span class="key">8</span></div>
+    <div class="skill"><span class="key">9</span></div>
+    <div class="skill"><span class="key">0</span></div>
+  </nav>
 </body>
 </html>
