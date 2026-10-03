@@ -84,13 +84,16 @@
 
   function grantExperience(amount) {
     state.player.xp += amount;
+    let leveled = false;
     while (state.player.xp >= state.player.xpNext) {
       state.player.xp -= state.player.xpNext;
       state.player.level += 1;
       state.player.points += 1;
       state.player.xpNext = Math.round(CONFIG.xpBase * Math.pow(1.28, state.player.level - 1));
+      leveled = true;
       addLog(`升至 ${state.player.level} 级，获得 1 点自由属性。`, "good");
     }
+    if (leveled) renderPointControls();
   }
 
   function enemiesAttack(now) {
@@ -129,6 +132,14 @@
     renderPlayer(performance.now());
   }
 
+  function renderPointControls() {
+    document.querySelectorAll("[data-stat][data-amount]").forEach(button => {
+      const affordable = state.player.points >= Number(button.dataset.amount);
+      button.hidden = !affordable;
+      button.disabled = !affordable;
+    });
+  }
+
   function addLog(message, type = "") {
     const node = document.createElement("div");
     node.className = `entry ${type}`;
@@ -164,9 +175,7 @@
     statMeta.forEach(([name, id]) => {
       $(`stat-${id}`).textContent = state.stats[name];
     });
-    document.querySelectorAll("[data-stat][data-amount]").forEach(button => {
-      button.disabled = state.player.points < Number(button.dataset.amount);
-    });
+    renderPointControls();
   }
 
   function renderSkills(now) {
