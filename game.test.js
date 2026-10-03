@@ -11,10 +11,15 @@ class FakeElement {
     this.style = {};
     this.textContent = "";
     this.dataset = {};
+    this.hidden = false;
+    this.disabled = false;
+    this.listeners = {};
     this.classList = { toggle() {} };
   }
 
-  addEventListener() {}
+  addEventListener(type, listener) {
+    this.listeners[type] = listener;
+  }
 
   prepend(child) {
     this.children.unshift(child);
@@ -30,13 +35,18 @@ class FakeElement {
 
 function loadGame() {
   const elements = new Map();
+  const pointButtons = [1, 5, 10, 50, 100].map(amount => {
+    const button = new FakeElement();
+    button.dataset = { stat: "力量", amount: String(amount) };
+    return button;
+  });
   const document = {
     createElement: () => new FakeElement(),
     getElementById(id) {
       if (!elements.has(id)) elements.set(id, new FakeElement());
       return elements.get(id);
     },
-    querySelectorAll: () => []
+    querySelectorAll: selector => selector === "[data-stat][data-amount]" ? pointButtons : []
   };
   let nextFrame;
   const context = {
@@ -54,6 +64,11 @@ function loadGame() {
 
   return {
     state: context.window.__gameState,
+    pointButtons,
+    clickPoint(amount) {
+      const button = pointButtons.find(item => Number(item.dataset.amount) === amount);
+      elements.get("attributes").listeners.click({ target: { closest: () => button } });
+    },
     frame(now) {
       const callback = nextFrame;
       nextFrame = undefined;
@@ -119,4 +134,28 @@ test("经验达到需求时升级并获得一个自由属性点", () => {
   assert.equal(game.state.player.level, 2);
   assert.equal(game.state.player.points, 1);
   assert.equal(game.state.player.xp, 0);
+});
+
+test("加点按钮按自由点数阈值出现并按面额消费", () => {
+  const game = loadGame();
+
+  assert.ok(game.pointButtons.every(button => button.hidden));
+
+  game.state.player.points = 4;
+  game.state.enemies[0].hp = 1;
+  game.state.enemies[0].xp = game.state.player.xpNext;
+  game.state.skills.slice(1).forEach(skill => { skill.readyAt = Number.POSITIVE_INFINITY; });
+  game.frame(1);
+
+  assert.equal(game.state.player.points, 5);
+  assert.deepEqual(
+    game.pointButtons.filter(button => !button.hidden).map(button => Number(button.dataset.amount)),
+    [1, 5]
+  );
+
+  game.clickPoint(5);
+
+  assert.equal(game.state.player.points, 0);
+  assert.equal(game.state.stats["力量"], 6);
+  assert.ok(game.pointButtons.every(button => button.hidden));
 });
