@@ -2,15 +2,34 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Outside the Sanctuary</title>
   <style>
     *{box-sizing:border-box}
     html,body{margin:0;width:100%;height:100%}
-    body{display:grid;place-items:center;background:#fff;color:#000}
+    body{position:relative;display:grid;place-items:center;overflow:hidden;background:#fff;color:#000}
     main{text-align:center}
     h1{margin:0;font-family:SimSun,"宋体",serif;font-size:42px;font-weight:400}
     p{margin:12px 0 0;font-family:SimHei,"黑体",sans-serif;font-size:18px;font-weight:400}
+    .attributes{position:absolute;left:4.1667vw;bottom:5.6vh;width:458px;height:340px;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
+    .attributes__header{position:absolute;inset:0 auto auto 0;width:236px;height:28px;color:#808080;font-size:24px;font-weight:700}
+    .attributes__header .label{position:absolute;left:0;top:0}
+    .attributes__header .value{position:absolute;left:163px;top:0;font-variant-numeric:tabular-nums}
+    .attributes__header::after{content:"";position:absolute;left:.5px;right:-.5px;bottom:0;height:1px;background:#808080;border-radius:999px}
+    .attribute-row{position:absolute;left:0;width:458px;height:51px;font-weight:700}
+    .attribute-row::after{content:"";position:absolute;left:.5px;top:34.5px;width:180px;height:1px;background:#000;border-radius:999px}
+    .attribute-row .name{position:absolute;left:0;top:0;font-size:30px;letter-spacing:-1px;color:transparent;background-clip:text;-webkit-background-clip:text}
+    .attribute-row .value{position:absolute;left:94px;top:0;font-size:30px;font-variant-numeric:tabular-nums}
+    .attribute-row .plus{position:absolute;top:5px;color:#aaa;font-size:20px;font-weight:700;white-space:nowrap}
+    .attribute-row .p1{left:214px}.attribute-row .p5{left:256px}.attribute-row .p10{left:301px}.attribute-row .p50{left:355px}.attribute-row .p100{left:412px}
+    .attribute-row:nth-of-type(2){top:44px}.attribute-row:nth-of-type(3){top:95px}.attribute-row:nth-of-type(4){top:146px}.attribute-row:nth-of-type(5){top:197px}.attribute-row:nth-of-type(6){top:248px}.attribute-row:nth-of-type(7){top:299px}
+    .attr-strength .name{background-image:linear-gradient(123deg,#d64b4b 30%,#000 100%)}
+    .attr-agility .name{background-image:linear-gradient(123deg,#33c47a 30%,#000 100%)}
+    .attr-intellect .name{background-image:linear-gradient(123deg,#5c6bff 30%,#000 100%)}
+    .attr-will .name{background-image:linear-gradient(123deg,#3fc7d6 30%,#000 100%)}
+    .attr-spirit .name{background-image:linear-gradient(123deg,#d8a03a 30%,#000 100%)}
+    .attr-faith .name{background-image:linear-gradient(123deg,#e1ebeb 30%,#000 100%)}
+    @media(max-width:560px){.attributes{left:16px;bottom:28px;transform:scale(.72);transform-origin:left bottom}}
   </style>
 </head>
 <body>
@@ -18,5 +37,14 @@
     <h1>Outside the Sanctuary</h1>
     <p>实验性游戏项目</p>
   </main>
+  <aside class="attributes" aria-label="角色属性">
+    <div class="attributes__header"><span class="label">自由点数</span><span class="value">98760</span></div>
+    <div class="attribute-row attr-strength"><span class="name">力量</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+    <div class="attribute-row attr-agility"><span class="name">敏捷</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+    <div class="attribute-row attr-intellect"><span class="name">智力</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+    <div class="attribute-row attr-will"><span class="name">意志</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+    <div class="attribute-row attr-spirit"><span class="name">灵知</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+    <div class="attribute-row attr-faith"><span class="name">信仰</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+  </aside>
 </body>
 </html>
