@@ -5,132 +5,53 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Outside the Sanctuary</title>
   <style>
-    *{box-sizing:border-box}
-    html,body{margin:0;width:100%;height:100%}
-    body{position:relative;overflow:hidden;background:#fff;color:#000;font-family:SimHei,"黑体",sans-serif}
-    .brand{position:absolute;left:4.1667vw;top:44px;text-align:left}
-    .brand h1{margin:0;font-family:SimSun,"宋体",serif;font-size:42px;font-weight:400;line-height:1}
-    .brand p{margin:10px 0 0;font-size:18px;font-weight:400;line-height:1}
-    .player{position:absolute;left:4.1667vw;top:132px;width:458px;padding-top:17px;border-top:1px solid #bdbdbd;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
-    .player__row{display:flex;align-items:baseline;width:236px;margin-bottom:12px}
-    .player__label{width:72px;color:#8a8a8a;font-size:14px;font-weight:700;letter-spacing:.08em}
-    .player__value{color:#111;font-size:23px;font-weight:700;letter-spacing:.04em}
-    .player__row:last-child{margin-bottom:0}
-    .player__row:last-child .player__value{font-size:18px;font-weight:400}
-    .wiki-link{position:absolute;right:4.1667vw;top:44px;padding:8px 13px;border:1px solid #111;color:#111;background:#fff;text-decoration:none;font-family:SimSun,"宋体",serif;font-size:14px;line-height:1;letter-spacing:.08em;transition:background .15s,color .15s}
-    .wiki-link:hover,.wiki-link:focus-visible{background:#111;color:#fff;outline:none}
-    .enemies{position:absolute;top:36px;left:50%;width:286px;transform:translateX(-50%);display:flex;flex-direction:column;gap:16px;font-family:SimSun,"宋体",serif}
-    .enemy{width:100%}
-    .enemy__meta{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:5px;font-size:12px;line-height:1;color:#777}
-    .enemy__name{color:#111;font-weight:700;letter-spacing:.08em}
-    .enemy__bar{position:relative;width:100%;height:7px;border:1px solid #111;background:#fff;overflow:hidden}
-    .enemy__fill{height:100%;background:linear-gradient(90deg,#d64b4b 0%,#8e3434 55%,#111 100%)}
-    .enemy:nth-child(1) .enemy__fill{width:100%}
-    .enemy:nth-child(2) .enemy__fill{width:76%}
-    .enemy:nth-child(3) .enemy__fill{width:43%}
-    .attributes{position:absolute;left:4.1667vw;bottom:5.6vh;width:458px;height:340px;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
-    .attributes__header{position:absolute;inset:0 auto auto 0;width:236px;height:28px;color:#808080;font-size:24px;font-weight:700}
-    .attributes__header .label{position:absolute;left:0;top:0}
-    .attributes__header .value{position:absolute;left:163px;top:0;font-variant-numeric:tabular-nums}
-    .attributes__header::after{content:"";position:absolute;left:.5px;right:-.5px;bottom:0;height:1px;background:#808080;border-radius:999px}
-    .attribute-row{position:absolute;left:0;width:458px;height:51px;font-weight:700}
-    .attribute-row::after{content:"";position:absolute;left:.5px;top:34.5px;width:180px;height:1px;background:#000;border-radius:999px}
-    .attribute-row .name{position:absolute;left:0;top:0;font-size:30px;letter-spacing:-1px;color:transparent;background-clip:text;-webkit-background-clip:text}
-    .attribute-row .value{position:absolute;left:94px;top:0;font-size:30px;font-variant-numeric:tabular-nums}
-    .attribute-row .plus{position:absolute;top:5px;color:#aaa;font-size:20px;font-weight:700;white-space:nowrap}
-    .attribute-row .p1{left:214px}.attribute-row .p5{left:256px}.attribute-row .p10{left:301px}.attribute-row .p50{left:355px}.attribute-row .p100{left:412px}
-    .attribute-row:nth-of-type(2){top:44px}.attribute-row:nth-of-type(3){top:95px}.attribute-row:nth-of-type(4){top:146px}.attribute-row:nth-of-type(5){top:197px}.attribute-row:nth-of-type(6){top:248px}.attribute-row:nth-of-type(7){top:299px}
-    .attr-strength .name{background-image:linear-gradient(123deg,#d64b4b 30%,#000 100%)}
-    .attr-agility .name{background-image:linear-gradient(123deg,#33c47a 30%,#000 100%)}
-    .attr-intellect .name{background-image:linear-gradient(123deg,#5c6bff 30%,#000 100%)}
-    .attr-will .name{background-image:linear-gradient(123deg,#3fc7d6 30%,#000 100%)}
-    .attr-spirit .name{background-image:linear-gradient(123deg,#d8a03a 30%,#000 100%)}
-    .attr-faith .name{background-image:linear-gradient(123deg,#e1ebeb 30%,#000 100%)}
-    .skillbar{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);display:flex;gap:7px;padding:7px;border:1px solid #cfcfcf;background:rgba(255,255,255,.92);box-shadow:0 6px 20px rgba(0,0,0,.04);user-select:none}
-    .skill{position:relative;width:52px;height:52px;border:1px solid #111;background:#fff;overflow:hidden}
-    .skill::before{content:"";position:absolute;inset:7px;border:1px solid #111;border-radius:50%}
-    .skill::after{content:"";position:absolute;left:50%;top:50%;width:21px;height:21px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid #111}
-    .skill .key{position:absolute;right:3px;bottom:2px;z-index:2;font-size:10px;line-height:1;color:#555;font-family:Arial,sans-serif}
-    .skill:nth-child(2)::before{border-radius:0;transform:rotate(45deg)}
-    .skill:nth-child(3)::after{border-radius:50%;background:linear-gradient(135deg,#33c47a22,#0000)}
-    .skill:nth-child(4)::before{border-color:#5c6bff}
-    .skill:nth-child(5)::after{border-color:#3fc7d6}
-    .skill:nth-child(6)::before{border-color:#d8a03a}
-    .skill:nth-child(7)::after{border-color:#d64b4b}
-    .skill:nth-child(8)::before{background:linear-gradient(135deg,#e1ebeb,#fff)}
-    .skill:nth-child(9)::after{width:26px;height:12px;border-radius:50%;transform:translate(-50%,-50%)}
-    .skill:nth-child(10)::before{inset:10px;border-radius:0;transform:rotate(22.5deg)}
-    @media(max-width:1100px){
-      .brand{left:32px;top:28px}
-      .wiki-link{right:32px;top:28px}
-      .player{left:32px;top:116px}
-      .attributes{left:32px;bottom:28px;transform:scale(.82);transform-origin:left bottom}
-      .skillbar{bottom:26px;gap:4px;padding:5px}
-      .skill{width:42px;height:42px}
-    }
-    @media(max-width:760px){
-      body{overflow:auto;min-height:860px}
-      .brand{left:20px;top:22px}
-      .brand h1{font-size:32px}
-      .brand p{font-size:15px}
-      .wiki-link{right:20px;top:22px;padding:7px 10px;font-size:12px}
-      .player{left:20px;top:102px;width:calc(100vw - 40px);padding-top:13px}
-      .player__row{margin-bottom:9px}
-      .enemies{top:118px;width:min(286px,calc(100vw - 40px))}
-      .attributes{left:20px;bottom:122px;transform:scale(.68);transform-origin:left bottom}
-      .skillbar{position:fixed;bottom:18px;max-width:calc(100vw - 24px);overflow-x:auto;gap:4px}
-      .skill{width:40px;height:40px;flex:0 0 40px}
-    }
+    :root{--ink:#171714;--muted:#85837d;--line:#d8d6ce;--paper:#f4f1e9;--red:#9b3d32;--gold:#a7792f}
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%}
+    body{background:var(--paper);color:var(--ink);font-family:"Songti SC",SimSun,"宋体",serif}
+    button{font:inherit}.page{display:grid;grid-template-columns:300px minmax(440px,1fr) 330px;min-height:100vh}
+    .panel{padding:38px 32px;border-right:1px solid var(--line)}
+    .brand h1{margin:0;font-size:27px;font-weight:400}.brand p,.eyebrow{margin:7px 0 0;color:var(--muted);font-family:Arial,sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+    .player-card{margin-top:54px}.level-line{display:flex;align-items:flex-end;justify-content:space-between}.level{font-size:48px}.level small{font-size:13px;color:var(--muted)}
+    .name{font-size:20px}.bar{position:relative;height:8px;margin-top:10px;border:1px solid var(--ink);overflow:hidden}.fill{height:100%;transition:width .25s}.hp-fill{background:var(--red)}.xp-fill{background:var(--gold)}
+    .bar-label{display:flex;justify-content:space-between;margin-top:6px;color:var(--muted);font:11px Arial,sans-serif}.state{margin-top:20px;padding:12px;border:1px solid var(--line);text-align:center;font-size:13px;letter-spacing:.08em}
+    .state.dead{border-color:var(--red);color:var(--red)}.stats{margin-top:44px}.stats-head{display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+    .points{color:var(--gold)}.stat{display:grid;grid-template-columns:1fr 44px 36px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.stat-value{font:18px Arial,sans-serif}
+    .add{width:31px;height:27px;border:1px solid var(--ink);background:transparent;cursor:pointer}.add:disabled{color:#aaa;border-color:#ccc;cursor:not-allowed}.add:not(:disabled):hover{background:var(--ink);color:var(--paper)}
+    .wiki-link{display:inline-block;margin-top:34px;color:var(--ink);font-size:12px;text-decoration:none;border-bottom:1px solid}
+    .battlefield{position:relative;padding:38px 5vw 150px}.battle-head{display:flex;justify-content:space-between;align-items:end}.battle-head h2{margin:0;font-size:38px;font-weight:400}.wave{font:12px Arial,sans-serif;color:var(--muted)}
+    .enemies{display:grid;gap:18px;margin-top:54px}.enemy{padding:20px;border:1px solid var(--line);background:rgba(255,255,255,.28);transition:opacity .2s}.enemy.dead{opacity:.35}.enemy-meta{display:flex;justify-content:space-between;align-items:baseline}.enemy-name{font-size:18px}.enemy-status{font:11px Arial,sans-serif;color:var(--muted)}.enemy .bar{height:6px}.enemy-hit{margin-top:11px;color:var(--muted);font-size:11px}
+    .skills{position:absolute;left:5vw;right:5vw;bottom:38px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.skill{position:relative;min-height:78px;padding:13px;border:1px solid var(--ink);overflow:hidden;background:transparent}.skill-name{position:relative;z-index:2;font-size:16px}.skill-detail{position:relative;z-index:2;margin-top:7px;color:var(--muted);font:10px Arial,sans-serif}.cooldown{position:absolute;inset:auto 0 0;background:rgba(23,23,20,.12);transition:height .1s linear}.cd-text{position:absolute;right:8px;top:8px;font:12px Arial,sans-serif}
+    .journal{padding:38px 28px;border-left:1px solid var(--line);background:#eeebe2}.journal h2{margin:0 0 25px;font-size:20px;font-weight:400}.log{display:flex;flex-direction:column;gap:0}.entry{padding:11px 0;border-bottom:1px solid var(--line);font-size:12px;line-height:1.6}.entry time{display:block;color:var(--muted);font:9px Arial,sans-serif}.entry.good{color:#6d5725}.entry.bad{color:var(--red)}
+    @media(max-width:980px){.page{grid-template-columns:250px 1fr}.journal{display:none}.panel{padding:25px 22px}.battlefield{padding:25px 30px 145px}.skills{left:30px;right:30px}}
+    @media(max-width:680px){.page{display:block}.panel{border-right:0;border-bottom:1px solid var(--line)}.player-card{margin-top:28px}.stats{margin-top:25px}.battlefield{min-height:700px;padding:28px 20px 145px}.battle-head h2{font-size:30px}.enemies{margin-top:30px}.skills{position:relative;left:auto;right:auto;bottom:auto;margin-top:35px;grid-template-columns:1fr}.journal{display:block;border-left:0}.page{min-width:0}}
   </style>
 </head>
 <body>
-  <a class="wiki-link" href="wiki.html">WIKI</a>
-  <header class="brand">
-    <h1>Outside the Sanctuary</h1>
-    <p>实验性游戏项目</p>
-  </header>
+  <main class="page">
+    <aside class="panel">
+      <header class="brand"><h1>Outside the Sanctuary</h1><p>Autonomous expedition</p></header>
+      <section class="player-card" aria-label="玩家状态">
+        <div class="level-line"><div><span class="eyebrow">漂泊者</span><div class="name">未命名旅人</div></div><div class="level"><small>LV.</small> <span id="level">1</span></div></div>
+        <div class="bar" aria-label="生命值"><div class="fill hp-fill" id="player-hp-fill"></div></div><div class="bar-label"><span>生命</span><span id="player-hp-text"></span></div>
+        <div class="bar" aria-label="经验值"><div class="fill xp-fill" id="xp-fill"></div></div><div class="bar-label"><span>经验</span><span id="xp-text"></span></div>
+        <div class="state" id="player-state">自动战斗中</div>
+      </section>
+      <section class="stats" aria-label="角色属性">
+        <div class="stats-head"><span>基础属性</span><span class="points">自由点数 <b id="points">0</b></span></div>
+        <div id="stats-list"></div>
+        <p class="eyebrow">属性暂不影响战斗数值</p>
+      </section>
+      <a class="wiki-link" href="wiki.html">查阅 WIKI →</a>
+    </aside>
 
-  <section class="player" aria-label="玩家角色">
-    <div class="player__row"><span class="player__label">角色名</span><span class="player__value">未命名</span></div>
-    <div class="player__row"><span class="player__label">职业</span><span class="player__value">未选择</span></div>
-  </section>
+    <section class="battlefield">
+      <header class="battle-head"><div><p class="eyebrow">荒野 · 自动交战区</p><h2>战场</h2></div><span class="wave">WAVE <b id="wave">1</b></span></header>
+      <div class="enemies" id="enemies" aria-live="polite"></div>
+      <div class="skills" id="skills" aria-label="自动技能栏"></div>
+    </section>
 
-  <section class="enemies" aria-label="敌人状态">
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 01</span><span>100%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
-    </div>
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 02</span><span>76%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
-    </div>
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 03</span><span>43%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
-    </div>
-  </section>
-
-  <aside class="attributes" aria-label="角色属性">
-    <div class="attributes__header"><span class="label">自由点数</span><span class="value">98760</span></div>
-    <div class="attribute-row attr-strength"><span class="name">力量</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-agility"><span class="name">敏捷</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-intellect"><span class="name">智力</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-will"><span class="name">意志</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-spirit"><span class="name">灵知</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-faith"><span class="name">信仰</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-  </aside>
-
-  <nav class="skillbar" aria-label="技能栏">
-    <div class="skill"><span class="key">1</span></div>
-    <div class="skill"><span class="key">2</span></div>
-    <div class="skill"><span class="key">3</span></div>
-    <div class="skill"><span class="key">4</span></div>
-    <div class="skill"><span class="key">5</span></div>
-    <div class="skill"><span class="key">6</span></div>
-    <div class="skill"><span class="key">7</span></div>
-    <div class="skill"><span class="key">8</span></div>
-    <div class="skill"><span class="key">9</span></div>
-    <div class="skill"><span class="key">0</span></div>
-  </nav>
+    <aside class="journal"><p class="eyebrow">实时记录</p><h2>战斗日志</h2><div class="log" id="log" aria-live="polite"></div></aside>
+  </main>
+  <script src="game.js"></script>
 </body>
 </html>
