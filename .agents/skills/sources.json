@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "name": "emilkowalski/skills",
+      "repository": "https://github.com/emilkowalski/skills",
+      "commit": "e8a175de22ae1e49370fc144c1f3bb9aeedf988d",
+      "license": "MIT",
+      "skills": [
+        "emil-design-eng",
+        "animate",
+        "break-ui",
+        "mobile-native",
+        "prototype"
+      ],
+      "adapter": ".agents/skills/outside-sanctuary-design/SKILL.md"
+    }
+  ]
+}
