@@ -11,23 +11,32 @@
     .brand{position:absolute;left:4.1667vw;top:44px;text-align:left}
     .brand h1{margin:0;font-family:SimSun,"宋体",serif;font-size:42px;font-weight:400;line-height:1}
     .brand p{margin:10px 0 0;font-size:18px;font-weight:400;line-height:1}
+    .wiki-link{position:absolute;right:4.1667vw;top:44px;padding:8px 13px;border:1px solid #111;color:#111;background:#fff;text-decoration:none;font-family:SimSun,"宋体",serif;font-size:14px;line-height:1;letter-spacing:.08em;transition:background .15s,color .15s}
+    .wiki-link:focus-visible{outline:1px solid #111;outline-offset:3px}
     .player{position:absolute;left:4.1667vw;top:132px;width:458px;padding-top:17px;border-top:1px solid #bdbdbd;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
-    .player__row{display:flex;align-items:baseline;width:236px;margin-bottom:12px}
+    .player__row{display:flex;align-items:baseline;width:286px;margin-bottom:12px}
     .player__label{width:72px;color:#8a8a8a;font-size:14px;font-weight:700;letter-spacing:.08em}
     .player__value{color:#111;font-size:23px;font-weight:700;letter-spacing:.04em}
-    .player__row:last-child{margin-bottom:0}
-    .player__row:last-child .player__value{font-size:18px;font-weight:400}
-    .wiki-link{position:absolute;right:4.1667vw;top:44px;padding:8px 13px;border:1px solid #111;color:#111;background:#fff;text-decoration:none;font-family:SimSun,"宋体",serif;font-size:14px;line-height:1;letter-spacing:.08em;transition:background .15s,color .15s}
-    .wiki-link:hover,.wiki-link:focus-visible{background:#111;color:#fff;outline:none}
-    .enemies{position:absolute;top:36px;left:50%;width:286px;transform:translateX(-50%);display:flex;flex-direction:column;gap:16px;font-family:SimSun,"宋体",serif}
-    .enemy{width:100%}
+    .player__row--minor .player__value{font-size:18px;font-weight:400}
+    .player__vitals{width:286px;margin-top:17px;padding-top:13px;border-top:1px solid #e3e3e3}
+    .player__metric{margin-top:10px}
+    .player__metric:first-child{margin-top:0}
+    .player__metric-head{display:flex;justify-content:space-between;margin-bottom:5px;color:#777;font-family:SimHei,"黑体",sans-serif;font-size:11px}
+    .player__bar{height:6px;border:1px solid #111;background:#fff;overflow:hidden}
+    .player__fill{height:100%;width:0;background:#111}
+    .player__fill--hp{background:linear-gradient(90deg,#d64b4b 0%,#8e3434 62%,#111 100%)}
+    .player__state{margin-top:11px;color:#777;font-family:SimHei,"黑体",sans-serif;font-size:11px;letter-spacing:.06em}
+    .player__state.dead{color:#b4453d}
+    .enemy-stack{position:absolute;top:36px;left:50%;width:286px;transform:translateX(-50%);font-family:SimSun,"宋体",serif}
+    .enemy-stack__head{display:flex;justify-content:flex-end;margin-bottom:12px;color:#888;font-family:Arial,sans-serif;font-size:10px;letter-spacing:.12em}
+    .enemies{display:flex;flex-direction:column;gap:16px}
+    .enemy{width:100%;transition:opacity 160ms cubic-bezier(.23,1,.32,1)}
+    .enemy.dead{opacity:.32}
     .enemy__meta{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:5px;font-size:12px;line-height:1;color:#777}
     .enemy__name{color:#111;font-weight:700;letter-spacing:.08em}
     .enemy__bar{position:relative;width:100%;height:7px;border:1px solid #111;background:#fff;overflow:hidden}
     .enemy__fill{height:100%;background:linear-gradient(90deg,#d64b4b 0%,#8e3434 55%,#111 100%)}
-    .enemy:nth-child(1) .enemy__fill{width:100%}
-    .enemy:nth-child(2) .enemy__fill{width:76%}
-    .enemy:nth-child(3) .enemy__fill{width:43%}
+    .enemy__detail{margin-top:5px;color:#aaa;font-family:Arial,sans-serif;font-size:9px;letter-spacing:.04em}
     .attributes{position:absolute;left:4.1667vw;bottom:5.6vh;width:458px;height:340px;font-family:"Songti SC",SimSun,"宋体",serif;line-height:1;user-select:none}
     .attributes__header{position:absolute;inset:0 auto auto 0;width:236px;height:28px;color:#808080;font-size:24px;font-weight:700}
     .attributes__header .label{position:absolute;left:0;top:0}
@@ -37,7 +46,9 @@
     .attribute-row::after{content:"";position:absolute;left:.5px;top:34.5px;width:180px;height:1px;background:#000;border-radius:999px}
     .attribute-row .name{position:absolute;left:0;top:0;font-size:30px;letter-spacing:-1px;color:transparent;background-clip:text;-webkit-background-clip:text}
     .attribute-row .value{position:absolute;left:94px;top:0;font-size:30px;font-variant-numeric:tabular-nums}
-    .attribute-row .plus{position:absolute;top:5px;color:#aaa;font-size:20px;font-weight:700;white-space:nowrap}
+    .attribute-row .plus{position:absolute;top:5px;padding:0;border:0;background:transparent;color:#aaa;font-family:inherit;font-size:20px;font-weight:700;line-height:1;white-space:nowrap;cursor:pointer;touch-action:manipulation}
+    .attribute-row .plus:disabled{color:#d5d5d5;cursor:default}
+    .attribute-row .plus:focus-visible{outline:1px solid #111;outline-offset:2px}
     .attribute-row .p1{left:214px}.attribute-row .p5{left:256px}.attribute-row .p10{left:301px}.attribute-row .p50{left:355px}.attribute-row .p100{left:412px}
     .attribute-row:nth-of-type(2){top:44px}.attribute-row:nth-of-type(3){top:95px}.attribute-row:nth-of-type(4){top:146px}.attribute-row:nth-of-type(5){top:197px}.attribute-row:nth-of-type(6){top:248px}.attribute-row:nth-of-type(7){top:299px}
     .attr-strength .name{background-image:linear-gradient(123deg,#d64b4b 30%,#000 100%)}
@@ -46,40 +57,44 @@
     .attr-will .name{background-image:linear-gradient(123deg,#3fc7d6 30%,#000 100%)}
     .attr-spirit .name{background-image:linear-gradient(123deg,#d8a03a 30%,#000 100%)}
     .attr-faith .name{background-image:linear-gradient(123deg,#e1ebeb 30%,#000 100%)}
-    .skillbar{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);display:flex;gap:7px;padding:7px;border:1px solid #cfcfcf;background:rgba(255,255,255,.92);box-shadow:0 6px 20px rgba(0,0,0,.04);user-select:none}
-    .skill{position:relative;width:52px;height:52px;border:1px solid #111;background:#fff;overflow:hidden}
-    .skill::before{content:"";position:absolute;inset:7px;border:1px solid #111;border-radius:50%}
-    .skill::after{content:"";position:absolute;left:50%;top:50%;width:21px;height:21px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid #111}
-    .skill .key{position:absolute;right:3px;bottom:2px;z-index:2;font-size:10px;line-height:1;color:#555;font-family:Arial,sans-serif}
+    .skillbar{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);display:flex;gap:7px;padding:7px;border:1px solid #cfcfcf;background:rgba(255,255,255,.94);box-shadow:0 6px 20px rgba(0,0,0,.04);user-select:none}
+    .skill{position:relative;width:52px;height:52px;flex:0 0 52px;border:1px solid #111;background:#fff;overflow:hidden}
+    .skill::before{content:"";position:absolute;inset:8px;border:1px solid #111;border-radius:50%;z-index:0}
+    .skill::after{content:"";position:absolute;left:50%;top:50%;width:20px;height:20px;transform:translate(-50%,-50%) rotate(45deg);border:1px solid #111;z-index:0}
     .skill:nth-child(2)::before{border-radius:0;transform:rotate(45deg)}
-    .skill:nth-child(3)::after{border-radius:50%;background:linear-gradient(135deg,#33c47a22,#0000)}
-    .skill:nth-child(4)::before{border-color:#5c6bff}
-    .skill:nth-child(5)::after{border-color:#3fc7d6}
-    .skill:nth-child(6)::before{border-color:#d8a03a}
-    .skill:nth-child(7)::after{border-color:#d64b4b}
-    .skill:nth-child(8)::before{background:linear-gradient(135deg,#e1ebeb,#fff)}
-    .skill:nth-child(9)::after{width:26px;height:12px;border-radius:50%;transform:translate(-50%,-50%)}
-    .skill:nth-child(10)::before{inset:10px;border-radius:0;transform:rotate(22.5deg)}
+    .skill:nth-child(3)::after{border-radius:50%;background:linear-gradient(135deg,#5c6bff22,#0000)}
+    .skill:nth-child(4)::before{border-color:#5c6bff}.skill:nth-child(5)::after{border-color:#3fc7d6}.skill:nth-child(6)::before{border-color:#d8a03a}.skill:nth-child(7)::after{border-color:#d64b4b}.skill:nth-child(8)::before{background:linear-gradient(135deg,#e1ebeb,#fff)}.skill:nth-child(9)::after{width:26px;height:12px;border-radius:50%;transform:translate(-50%,-50%)}.skill:nth-child(10)::before{inset:10px;border-radius:0;transform:rotate(22.5deg)}
+    .skill-name{position:absolute;left:4px;top:4px;z-index:3;max-width:32px;overflow:hidden;color:#111;font-family:SimHei,"黑体",sans-serif;font-size:9px;line-height:1;white-space:nowrap;text-overflow:ellipsis}
+    .cooldown{position:absolute;left:0;right:0;bottom:0;z-index:2;background:rgba(17,17,17,.13);pointer-events:none}
+    .cd-text{position:absolute;right:3px;top:3px;z-index:3;color:#777;font-family:Arial,sans-serif;font-size:8px;line-height:1}
+    .skill .key{position:absolute;right:3px;bottom:2px;z-index:3;color:#555;font-family:Arial,sans-serif;font-size:10px;line-height:1}
+    .skill--empty{border-color:#cfcfcf}
+    .combat-log{position:absolute;right:4.1667vw;bottom:5.6vh;width:300px;height:250px;padding-top:10px;border-top:1px solid #111;font-family:SimHei,"黑体",sans-serif}
+    .combat-log__head{display:flex;justify-content:space-between;margin-bottom:7px;color:#777;font-size:10px;letter-spacing:.1em}
+    .log{height:218px;overflow:hidden}
+    .entry{padding:7px 0;border-bottom:1px solid #ededed;color:#777;font-size:10px;line-height:1.45}
+    .entry time{display:block;margin-bottom:2px;color:#bbb;font-family:Arial,sans-serif;font-size:8px}
+    .entry.good{color:#8b6a2d}.entry.bad{color:#a84a43}
+    @media(hover:hover) and (pointer:fine){
+      .wiki-link:hover{background:#111;color:#fff}
+      .attribute-row .plus:not(:disabled):hover{color:#111}
+    }
     @media(max-width:1100px){
-      .brand{left:32px;top:28px}
-      .wiki-link{right:32px;top:28px}
-      .player{left:32px;top:116px}
-      .attributes{left:32px;bottom:28px;transform:scale(.82);transform-origin:left bottom}
-      .skillbar{bottom:26px;gap:4px;padding:5px}
-      .skill{width:42px;height:42px}
+      .brand{left:32px;top:28px}.wiki-link{right:32px;top:28px}.player{left:32px;top:116px}.attributes{left:32px;bottom:28px;transform:scale(.82);transform-origin:left bottom}
+      .skillbar{bottom:26px;gap:4px;padding:5px}.skill{width:42px;height:42px;flex-basis:42px}.skill::before{inset:6px}.skill::after{width:17px;height:17px}
+      .combat-log{right:32px;bottom:100px;width:240px;height:190px}.log{height:158px}
     }
     @media(max-width:760px){
-      body{overflow:auto;min-height:860px}
-      .brand{left:20px;top:22px}
-      .brand h1{font-size:32px}
-      .brand p{font-size:15px}
-      .wiki-link{right:20px;top:22px;padding:7px 10px;font-size:12px}
-      .player{left:20px;top:102px;width:calc(100vw - 40px);padding-top:13px}
-      .player__row{margin-bottom:9px}
-      .enemies{top:118px;width:min(286px,calc(100vw - 40px))}
-      .attributes{left:20px;bottom:122px;transform:scale(.68);transform-origin:left bottom}
-      .skillbar{position:fixed;bottom:18px;max-width:calc(100vw - 24px);overflow-x:auto;gap:4px}
-      .skill{width:40px;height:40px;flex:0 0 40px}
+      body{overflow:auto;min-height:1240px}
+      .brand{left:20px;top:22px}.brand h1{font-size:32px}.brand p{font-size:15px}.wiki-link{right:20px;top:22px;padding:7px 10px;font-size:12px}
+      .player{left:20px;top:102px;width:calc(100vw - 40px);padding-top:13px}.player__row{margin-bottom:9px}.player__vitals{width:min(286px,100%)}
+      .enemy-stack{top:320px;width:min(286px,calc(100vw - 40px))}
+      .attributes{left:20px;bottom:155px;transform:scale(.68);transform-origin:left bottom}
+      .skillbar{position:fixed;bottom:18px;max-width:calc(100vw - 24px);overflow-x:auto;gap:4px}.skill{width:40px;height:40px;flex-basis:40px}
+      .combat-log{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .wiki-link,.enemy{transition:none}
     }
   </style>
 </head>
@@ -92,45 +107,43 @@
 
   <section class="player" aria-label="玩家角色">
     <div class="player__row"><span class="player__label">角色名</span><span class="player__value">未命名</span></div>
-    <div class="player__row"><span class="player__label">职业</span><span class="player__value">未选择</span></div>
-  </section>
-
-  <section class="enemies" aria-label="敌人状态">
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 01</span><span>100%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
-    </div>
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 02</span><span>76%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
-    </div>
-    <div class="enemy">
-      <div class="enemy__meta"><span class="enemy__name">敌人 03</span><span>43%</span></div>
-      <div class="enemy__bar"><div class="enemy__fill"></div></div>
+    <div class="player__row player__row--minor"><span class="player__label">职业</span><span class="player__value">未选择</span></div>
+    <div class="player__row player__row--minor"><span class="player__label">等级</span><span class="player__value" id="level">1</span></div>
+    <div class="player__vitals">
+      <div class="player__metric">
+        <div class="player__metric-head"><span>生命</span><span id="player-hp-text">180 / 180</span></div>
+        <div class="player__bar"><div class="player__fill player__fill--hp" id="player-hp-fill"></div></div>
+      </div>
+      <div class="player__metric">
+        <div class="player__metric-head"><span>经验</span><span id="xp-text">0 / 60</span></div>
+        <div class="player__bar"><div class="player__fill" id="xp-fill"></div></div>
+      </div>
+      <div class="player__state" id="player-state" aria-live="polite">自动战斗中</div>
     </div>
   </section>
 
-  <aside class="attributes" aria-label="角色属性">
-    <div class="attributes__header"><span class="label">自由点数</span><span class="value">98760</span></div>
-    <div class="attribute-row attr-strength"><span class="name">力量</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-agility"><span class="name">敏捷</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-intellect"><span class="name">智力</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-will"><span class="name">意志</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-spirit"><span class="name">灵知</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
-    <div class="attribute-row attr-faith"><span class="name">信仰</span><span class="value">54321</span><span class="plus p1">+1</span><span class="plus p5">+5</span><span class="plus p10">+10</span><span class="plus p50">+50</span><span class="plus p100">+100</span></div>
+  <section class="enemy-stack" aria-label="敌人状态">
+    <div class="enemy-stack__head">WAVE&nbsp;<span id="wave">1</span></div>
+    <div class="enemies" id="enemies" aria-live="polite"></div>
+  </section>
+
+  <aside class="attributes" id="attributes" aria-label="角色属性">
+    <div class="attributes__header"><span class="label">自由点数</span><span class="value" id="points">0</span></div>
+    <div class="attribute-row attr-strength"><span class="name">力量</span><span class="value" id="stat-strength">1</span><button class="plus p1" data-stat="力量" data-amount="1">+1</button><button class="plus p5" data-stat="力量" data-amount="5">+5</button><button class="plus p10" data-stat="力量" data-amount="10">+10</button><button class="plus p50" data-stat="力量" data-amount="50">+50</button><button class="plus p100" data-stat="力量" data-amount="100">+100</button></div>
+    <div class="attribute-row attr-agility"><span class="name">敏捷</span><span class="value" id="stat-agility">1</span><button class="plus p1" data-stat="敏捷" data-amount="1">+1</button><button class="plus p5" data-stat="敏捷" data-amount="5">+5</button><button class="plus p10" data-stat="敏捷" data-amount="10">+10</button><button class="plus p50" data-stat="敏捷" data-amount="50">+50</button><button class="plus p100" data-stat="敏捷" data-amount="100">+100</button></div>
+    <div class="attribute-row attr-intellect"><span class="name">智力</span><span class="value" id="stat-intellect">1</span><button class="plus p1" data-stat="智力" data-amount="1">+1</button><button class="plus p5" data-stat="智力" data-amount="5">+5</button><button class="plus p10" data-stat="智力" data-amount="10">+10</button><button class="plus p50" data-stat="智力" data-amount="50">+50</button><button class="plus p100" data-stat="智力" data-amount="100">+100</button></div>
+    <div class="attribute-row attr-will"><span class="name">意志</span><span class="value" id="stat-will">1</span><button class="plus p1" data-stat="意志" data-amount="1">+1</button><button class="plus p5" data-stat="意志" data-amount="5">+5</button><button class="plus p10" data-stat="意志" data-amount="10">+10</button><button class="plus p50" data-stat="意志" data-amount="50">+50</button><button class="plus p100" data-stat="意志" data-amount="100">+100</button></div>
+    <div class="attribute-row attr-spirit"><span class="name">灵知</span><span class="value" id="stat-spirit">1</span><button class="plus p1" data-stat="灵知" data-amount="1">+1</button><button class="plus p5" data-stat="灵知" data-amount="5">+5</button><button class="plus p10" data-stat="灵知" data-amount="10">+10</button><button class="plus p50" data-stat="灵知" data-amount="50">+50</button><button class="plus p100" data-stat="灵知" data-amount="100">+100</button></div>
+    <div class="attribute-row attr-faith"><span class="name">信仰</span><span class="value" id="stat-faith">1</span><button class="plus p1" data-stat="信仰" data-amount="1">+1</button><button class="plus p5" data-stat="信仰" data-amount="5">+5</button><button class="plus p10" data-stat="信仰" data-amount="10">+10</button><button class="plus p50" data-stat="信仰" data-amount="50">+50</button><button class="plus p100" data-stat="信仰" data-amount="100">+100</button></div>
   </aside>
 
-  <nav class="skillbar" aria-label="技能栏">
-    <div class="skill"><span class="key">1</span></div>
-    <div class="skill"><span class="key">2</span></div>
-    <div class="skill"><span class="key">3</span></div>
-    <div class="skill"><span class="key">4</span></div>
-    <div class="skill"><span class="key">5</span></div>
-    <div class="skill"><span class="key">6</span></div>
-    <div class="skill"><span class="key">7</span></div>
-    <div class="skill"><span class="key">8</span></div>
-    <div class="skill"><span class="key">9</span></div>
-    <div class="skill"><span class="key">0</span></div>
-  </nav>
+  <nav class="skillbar" id="skills" aria-label="自动技能栏"></nav>
+
+  <aside class="combat-log" aria-label="战斗日志">
+    <div class="combat-log__head"><span>战斗日志</span><span>自动记录</span></div>
+    <div class="log" id="log" aria-live="polite"></div>
+  </aside>
+
+  <script src="game.js"></script>
 </body>
 </html>
