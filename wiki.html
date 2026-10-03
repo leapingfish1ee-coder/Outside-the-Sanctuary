@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wiki · Outside the Sanctuary</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:#fff;color:#111}
+    body{font-family:"Songti SC",SimSun,"宋体",serif}
+    a{color:inherit}
+    .shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+    .sidebar{position:sticky;top:0;height:100vh;padding:42px 30px 32px 4.1667vw;border-right:1px solid #d7d7d7;background:#fff}
+    .brand{display:block;margin-bottom:38px;text-decoration:none}
+    .brand__title{display:block;font-size:24px;line-height:1.1}
+    .brand__sub{display:block;margin-top:8px;color:#888;font-family:SimHei,"黑体",sans-serif;font-size:12px;letter-spacing:.08em}
+    .nav-title{margin-bottom:12px;color:#999;font-family:SimHei,"黑体",sans-serif;font-size:11px;letter-spacing:.16em}
+    .nav{display:flex;flex-direction:column}
+    .nav a{position:relative;padding:11px 0 10px;text-decoration:none;font-size:18px;border-bottom:1px solid #ededed}
+    .nav a[aria-current="page"]{font-weight:700}
+    .nav a[aria-current="page"]::before{content:"";position:absolute;left:-14px;top:50%;width:6px;height:6px;transform:translateY(-50%);background:#111;border-radius:50%}
+    .back{position:absolute;left:4.1667vw;bottom:32px;color:#777;text-decoration:none;font-family:SimHei,"黑体",sans-serif;font-size:12px}
+    .content{padding:42px 5vw 80px;max-width:1400px}
+    .eyebrow{margin:0 0 13px;color:#888;font-family:SimHei,"黑体",sans-serif;font-size:12px;letter-spacing:.12em}
+    h1{margin:0;font-size:46px;font-weight:400;line-height:1}
+    .intro{max-width:760px;margin:20px 0 36px;color:#555;font-family:SimHei,"黑体",sans-serif;font-size:14px;line-height:1.9}
+    .legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:26px;font-family:SimHei,"黑体",sans-serif;font-size:12px;color:#777}
+    .legend span::before{content:"";display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;vertical-align:1px;background:#111}
+    .legend .str::before{background:#d64b4b}.legend .agi::before{background:#33c47a}.legend .int::before{background:#5c6bff}.legend .wil::before{background:#3fc7d6}.legend .spi::before{background:#d8a03a}.legend .fai::before{background:#c8d2d2}
+    .matrix-wrap{overflow:auto;border-top:1px solid #111}
+    table{width:100%;min-width:900px;border-collapse:collapse;table-layout:fixed}
+    th,td{border-bottom:1px solid #dcdcdc;border-right:1px solid #ececec;padding:16px 14px;text-align:left;vertical-align:top}
+    th:last-child,td:last-child{border-right:0}
+    thead th{color:#777;font-family:SimHei,"黑体",sans-serif;font-size:12px;font-weight:400;letter-spacing:.08em}
+    thead th:first-child{width:96px}
+    tbody th{font-size:15px;font-weight:700}
+    .class-name{display:block;margin-bottom:5px;font-size:17px;font-weight:700}
+    .pair{display:block;color:#999;font-family:SimHei,"黑体",sans-serif;font-size:10px;letter-spacing:.08em}
+    .pure{background:#fafafa}
+    @media(max-width:860px){
+      .shell{display:block}
+      .sidebar{position:relative;height:auto;padding:24px 20px 18px;border-right:0;border-bottom:1px solid #d7d7d7}
+      .brand{margin-bottom:22px}
+      .nav{flex-direction:row}
+      .nav a{padding:8px 18px 8px 0;border-bottom:0}
+      .nav a[aria-current="page"]::before{display:none}
+      .back{position:absolute;right:20px;left:auto;bottom:24px}
+      .content{padding:30px 20px 60px}
+      h1{font-size:38px}
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <span class="brand__title">Outside the Sanctuary</span>
+        <span class="brand__sub">项目 WIKI</span>
+      </a>
+      <div class="nav-title">条目</div>
+      <nav class="nav" aria-label="Wiki 导航">
+        <a href="#professions" aria-current="page">职业</a>
+      </nav>
+      <a class="back" href="index.html">← 返回游戏界面</a>
+    </aside>
+
+    <main class="content" id="professions">
+      <p class="eyebrow">WIKI / 01</p>
+      <h1>一阶职业</h1>
+      <p class="intro">一阶职业由六项基础属性进行“主属性 × 副属性”的有序组合生成，共 6 × 6 = 36 个职业；主属性定义职业核心倾向，副属性定义其战斗分支，同属性组合则形成该属性的纯系职业。</p>
+
+      <div class="legend" aria-label="属性图例">
+        <span class="str">力量</span><span class="agi">敏捷</span><span class="int">智力</span><span class="wil">意志</span><span class="spi">灵知</span><span class="fai">信仰</span>
+      </div>
+
+      <div class="matrix-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>主 \ 副</th>
+              <th>力量</th><th>敏捷</th><th>智力</th><th>意志</th><th>灵知</th><th>信仰</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>力量</th>
+              <td class="pure"><span class="class-name">狂战士</span><span class="pair">力量 × 力量</span></td>
+              <td><span class="class-name">剑斗士</span><span class="pair">力量 × 敏捷</span></td>
+              <td><span class="class-name">战术家</span><span class="pair">力量 × 智力</span></td>
+              <td><span class="class-name">守誓卫</span><span class="pair">力量 × 意志</span></td>
+              <td><span class="class-name">图腾武者</span><span class="pair">力量 × 灵知</span></td>
+              <td><span class="class-name">圣战士</span><span class="pair">力量 × 信仰</span></td>
+            </tr>
+            <tr>
+              <th>敏捷</th>
+              <td><span class="class-name">破阵者</span><span class="pair">敏捷 × 力量</span></td>
+              <td class="pure"><span class="class-name">游侠</span><span class="pair">敏捷 × 敏捷</span></td>
+              <td><span class="class-name">机关师</span><span class="pair">敏捷 × 智力</span></td>
+              <td><span class="class-name">影刃</span><span class="pair">敏捷 × 意志</span></td>
+              <td><span class="class-name">猎魂人</span><span class="pair">敏捷 × 灵知</span></td>
+              <td><span class="class-name">圣猎者</span><span class="pair">敏捷 × 信仰</span></td>
+            </tr>
+            <tr>
+              <th>智力</th>
+              <td><span class="class-name">战法师</span><span class="pair">智力 × 力量</span></td>
+              <td><span class="class-name">奥术刺客</span><span class="pair">智力 × 敏捷</span></td>
+              <td class="pure"><span class="class-name">学者</span><span class="pair">智力 × 智力</span></td>
+              <td><span class="class-name">咒术师</span><span class="pair">智力 × 意志</span></td>
+              <td><span class="class-name">秘仪师</span><span class="pair">智力 × 灵知</span></td>
+              <td><span class="class-name">神学士</span><span class="pair">智力 × 信仰</span></td>
+            </tr>
+            <tr>
+              <th>意志</th>
+              <td><span class="class-name">铁卫</span><span class="pair">意志 × 力量</span></td>
+              <td><span class="class-name">决斗家</span><span class="pair">意志 × 敏捷</span></td>
+              <td><span class="class-name">心灵术士</span><span class="pair">意志 × 智力</span></td>
+              <td class="pure"><span class="class-name">苦修者</span><span class="pair">意志 × 意志</span></td>
+              <td><span class="class-name">通灵者</span><span class="pair">意志 × 灵知</span></td>
+              <td><span class="class-name">审判官</span><span class="pair">意志 × 信仰</span></td>
+            </tr>
+            <tr>
+              <th>灵知</th>
+              <td><span class="class-name">荒魂战士</span><span class="pair">灵知 × 力量</span></td>
+              <td><span class="class-name">荒野行者</span><span class="pair">灵知 × 敏捷</span></td>
+              <td><span class="class-name">占星师</span><span class="pair">灵知 × 智力</span></td>
+              <td><span class="class-name">灵媒</span><span class="pair">灵知 × 意志</span></td>
+              <td class="pure"><span class="class-name">萨满</span><span class="pair">灵知 × 灵知</span></td>
+              <td><span class="class-name">先知</span><span class="pair">灵知 × 信仰</span></td>
+            </tr>
+            <tr>
+              <th>信仰</th>
+              <td><span class="class-name">圣骑士</span><span class="pair">信仰 × 力量</span></td>
+              <td><span class="class-name">巡礼者</span><span class="pair">信仰 × 敏捷</span></td>
+              <td><span class="class-name">祭司</span><span class="pair">信仰 × 智力</span></td>
+              <td><span class="class-name">牧师</span><span class="pair">信仰 × 意志</span></td>
+              <td><span class="class-name">祈灵师</span><span class="pair">信仰 × 灵知</span></td>
+              <td class="pure"><span class="class-name">神官</span><span class="pair">信仰 × 信仰</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
