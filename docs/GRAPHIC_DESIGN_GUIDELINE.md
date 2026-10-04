@@ -1,8 +1,10 @@
 # Outside the Sanctuary — Graphic Design Guideline
 
-版本：1.0  
-范围：游戏 HUD、Wiki、项目展示页、静态图形与后续视觉资产。  
+版本：2.0
+范围：游戏 HUD、Wiki、项目展示页、静态图形与后续视觉资产。
 上游方法参考：emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d（MIT）。
+
+现行参数以 [BrandDesignGuideline](BrandDesignGuideline.md) 及 `styles/brand.css`、`styles/hud.css`、`styles/wiki.css` 为准。下文保留原始视觉原则与历史尺度；排版参数、响应式、面额按钮、技能空槽与日志旧描述由新规范对应章节替代。黑白、宋体、细线、语义色和原创资产约束继续有效。
 
 ## 1. 核心设计命题
 

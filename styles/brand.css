@@ -1,0 +1,37 @@
+:root {
+  color-scheme: light;
+  --paper: #fff;
+  --ink: #111;
+  --secondary: #666;
+  --muted: #777;
+  --rule: #d7d7d7;
+  --hairline: #ededed;
+  --surface: #fafafa;
+  --strength: #d64b4b;
+  --agility: #33c47a;
+  --intellect: #5c6bff;
+  --will: #3fc7d6;
+  --spirit: #d8a03a;
+  --faith: #c8d2d2;
+  --serif: "Songti SC", SimSun, "宋体", "Times New Roman", serif;
+  --sans: "PingFang SC", SimHei, "黑体", Arial, sans-serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --gutter: clamp(32px, 4.1667vw, 96px);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+}
+* { box-sizing: border-box; }
+html { background: var(--paper); color: var(--ink); }
+body { margin: 0; font-family: var(--serif); line-height: 1.5; }
+a { color: inherit; text-underline-offset: 4px; }
+button { font: inherit; touch-action: manipulation; user-select: none; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+::selection { background: #e8e8e8; color: var(--ink); }
+.wordmark { font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
+.wordmark span { display: block; }
+.section-label { font-family: var(--sans); font-size: 11px; font-weight: 400; line-height: 1.5; letter-spacing: .12em; color: var(--muted); }
+.folio { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
+.folio__index { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; }
+.numeric { font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { :root { --gutter: 20px; } }
+@media (max-width: 360px) { :root { --gutter: 16px; } }

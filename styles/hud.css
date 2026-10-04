@@ -1,0 +1,98 @@
+.hud {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(286px, 1fr) minmax(200px, 280px);
+  grid-template-rows: auto minmax(224px, 1fr) auto auto;
+  column-gap: clamp(32px, 4vw, 80px);
+  row-gap: 24px;
+  min-height: 100svh;
+  padding: 44px var(--gutter) 32px;
+}
+.hud > * { min-width: 0; }
+.brand { grid-column: 1; grid-row: 1; }
+.brand h1 { margin: 0; font-size: 42px; }
+.brand p { margin: 12px 0 0; color: var(--secondary); font-family: var(--sans); font-size: 12px; letter-spacing: .12em; }
+.wiki-link { grid-column: 3; grid-row: 1; justify-self: end; align-self: start; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--ink); background: var(--paper); text-decoration: none; font-size: 14px; letter-spacing: .08em; box-shadow: 0 2px 0 var(--hairline); }
+.wiki-link:active { background: var(--ink); color: var(--paper); box-shadow: none; }
+.player { grid-column: 1; grid-row: 2; align-self: start; }
+.player__row { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: baseline; gap: 12px; margin-bottom: 8px; }
+.player__label { color: var(--muted); font-family: var(--sans); font-size: 12px; }
+.player__value { font-size: 23px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.player__row--minor .player__value { font-size: 18px; font-weight: 400; }
+.player__vitals { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.player__metric + .player__metric { margin-top: 12px; }
+.player__metric-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; margin-bottom: 6px; font-family: var(--sans); font-size: 12px; color: var(--secondary); font-variant-numeric: tabular-nums; }
+.player__bar, .enemy__bar { height: 6px; border: 1px solid var(--ink); background: var(--surface); overflow: hidden; }
+.player__fill { height: 100%; width: 0; background: var(--ink); }
+.player__fill--hp, .enemy__fill { height: 100%; background: linear-gradient(90deg, #8e3434, var(--ink)); }
+.player__state { margin-top: 12px; color: var(--secondary); font-family: var(--sans); font-size: 12px; }
+.player__state.dead { color: #a33d36; }
+.enemy-stack { grid-column: 2; grid-row: 1 / 3; justify-self: center; align-self: start; width: min(100%, 320px); }
+.enemy-stack__head { margin-bottom: 20px; }
+.enemies { display: flex; flex-direction: column; gap: 20px; }
+.enemy.dead { opacity: .45; }
+.enemy__meta { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 6px; font-size: 12px; color: var(--secondary); font-variant-numeric: tabular-nums; }
+.enemy__name { font-size: 14px; font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
+.enemy__detail { margin-top: 6px; font-family: var(--sans); color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.attributes { grid-column: 1; grid-row: 3; align-self: end; }
+.attributes__header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; margin-bottom: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+.attributes__header .label { font-size: 18px; }
+.attributes__header .value { font-family: var(--mono); font-size: 23px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.attribute-row { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; align-items: baseline; gap: 4px 12px; min-height: 48px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.attribute-row .name { font-size: 30px; font-weight: 700; line-height: 1.1; letter-spacing: -.04em; color: transparent; background-image: linear-gradient(120deg, var(--attribute-color) 15%, var(--ink) 90%); background-clip: text; -webkit-background-clip: text; }
+.attribute-row .value { font-size: 30px; line-height: 1.2; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.attribute-row__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.attribute-row__actions:has(.p5:not([hidden])) { grid-column: 1 / -1; justify-content: flex-start; }
+.attribute-row__actions:not(:has(button:not([hidden]))) { display: none; }
+.attribute-row .plus { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 36px; padding: 4px 6px; border: 1px solid var(--rule); border-radius: 0; background: var(--paper); color: var(--secondary); font-family: var(--mono); font-size: 12px; cursor: pointer; }
+.attribute-row .plus:active { color: var(--ink); background: var(--hairline); box-shadow: inset 0 1px 2px #0000000a; }
+.attribute-row .plus:disabled { color: var(--muted); cursor: default; }
+.attr-strength { --attribute-color: var(--strength); }
+.attr-agility { --attribute-color: var(--agility); }
+.attr-intellect { --attribute-color: var(--intellect); }
+.attr-will { --attribute-color: var(--will); }
+.attr-spirit { --attribute-color: var(--spirit); }
+.attr-faith { --attribute-color: var(--faith); }
+.skillbar { grid-column: 1 / -1; grid-row: 4; justify-self: center; display: flex; gap: 6px; max-width: 100%; margin-top: 8px; padding: 6px; border: 1px solid var(--rule); background: var(--surface); box-shadow: 0 2px 0 var(--hairline), inset 0 1px 0 var(--paper); overflow-x: auto; user-select: none; }
+.skill { position: relative; width: 52px; height: 52px; flex: 0 0 52px; border: 1px solid var(--ink); background: var(--paper); overflow: hidden; }
+.skill::before { content: ""; position: absolute; inset: 10px; border: 1px solid var(--ink); border-radius: 50%; }
+.skill::after { content: ""; position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; transform: translate(-50%, -50%) rotate(45deg); border: 1px solid var(--ink); }
+.skill:nth-child(2)::before { border-radius: 0; transform: rotate(45deg); }
+.skill:nth-child(3)::after { border-radius: 50%; border-color: var(--intellect); }
+.skill--empty { border-color: var(--rule); background: var(--surface); }
+.skill--empty::before, .skill--empty::after { content: none; }
+.skill-name { position: absolute; left: 4px; top: 3px; z-index: 3; font-family: var(--sans); font-size: 10px; line-height: 1.2; }
+.cooldown { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; background: #11111118; pointer-events: none; }
+.cd-text, .skill .key { position: absolute; right: 3px; z-index: 3; font-family: var(--mono); font-size: 10px; line-height: 1.2; color: var(--secondary); font-variant-numeric: tabular-nums; }
+.cd-text { bottom: 16px; }
+.skill .key { bottom: 3px; }
+.combat-log { grid-column: 3; grid-row: 3; align-self: end; }
+.log { max-height: 244px; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--rule) var(--paper); }
+.entry { padding: 10px 0; border-bottom: 1px solid var(--hairline); color: var(--secondary); font-family: var(--sans); font-size: 12px; line-height: 1.65; overflow-wrap: anywhere; }
+.entry time { display: block; margin-bottom: 3px; color: var(--muted); font-family: var(--mono); font-size: 10px; }
+.entry.good { color: #806229; }
+.entry.bad { color: #a33d36; }
+@media (hover: hover) and (pointer: fine) {
+  .wiki-link:hover { background: var(--ink); color: var(--paper); }
+  .attribute-row .plus:not(:disabled):hover { border-color: var(--ink); color: var(--ink); }
+}
+@media (max-width: 1200px) {
+  .hud { grid-template-columns: minmax(280px, 320px) minmax(286px, 1fr); column-gap: 48px; padding-top: 32px; }
+  .wiki-link { grid-column: 2; grid-row: 1; z-index: 1; }
+  .enemy-stack { grid-row: 2; }
+  .combat-log { grid-column: 2; max-width: 320px; width: 100%; justify-self: center; }
+}
+@media (max-width: 760px) {
+  .hud { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 32px; padding: 24px var(--gutter) calc(112px + env(safe-area-inset-bottom)); }
+  .brand { grid-column: 1; grid-row: 1; padding-right: 84px; }
+  .brand h1 { font-size: 32px; }
+  .brand p { font-size: 11px; letter-spacing: .06em; }
+  .wiki-link { grid-column: 1; grid-row: 1; padding: 0 12px; font-size: 12px; }
+  .player, .enemy-stack, .attributes, .combat-log { grid-column: 1; grid-row: auto; width: 100%; max-width: none; }
+  .enemy-stack { justify-self: stretch; }
+  .enemy-stack__head { margin-bottom: 16px; }
+  .enemies { gap: 16px; }
+  .attribute-row .plus { min-height: 44px; }
+  .skillbar { position: fixed; z-index: 5; left: var(--gutter); right: var(--gutter); bottom: calc(12px + env(safe-area-inset-bottom)); margin: 0; justify-self: auto; background: var(--paper); box-shadow: 0 -1px 0 var(--paper), 0 2px 0 var(--hairline); }
+  .skill { width: 44px; height: 52px; flex-basis: 44px; }
+  .log { max-height: 200px; }
+}
