@@ -16,6 +16,12 @@
   --serif: "Songti SC", SimSun, "宋体", "Times New Roman", serif;
   --sans: "PingFang SC", SimHei, "黑体", Arial, sans-serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --type-caption: 12px;
+  --type-ui: 14px;
+  --type-body: 16px;
+  --type-heading: 20px;
+  --type-stat: 22px;
+  --type-display: 32px;
   --gutter: clamp(32px, 4.1667vw, 96px);
   --ease-out: cubic-bezier(.23, 1, .32, 1);
 }
@@ -29,9 +35,9 @@ button { font: inherit; touch-action: manipulation; user-select: none; }
 ::selection { background: #e8e8e8; color: var(--ink); }
 .wordmark { font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
 .wordmark span { display: block; }
-.section-label { font-family: var(--sans); font-size: 11px; font-weight: 400; line-height: 1.5; letter-spacing: .12em; color: var(--muted); }
+.section-label { font-family: var(--sans); font-size: var(--type-ui); font-weight: 400; line-height: 1.5; letter-spacing: .04em; color: var(--muted); }
 .folio { display: flex; justify-content: space-between; gap: 16px; margin: 0 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
-.folio__index { font-family: var(--mono); font-size: 10px; letter-spacing: .08em; }
+.folio__index { font-family: var(--mono); font-size: var(--type-caption); letter-spacing: .04em; }
 .numeric { font-variant-numeric: tabular-nums; }
 @media (max-width: 760px) { :root { --gutter: 20px; } }
 @media (max-width: 360px) { :root { --gutter: 16px; } }

@@ -1,6 +1,6 @@
 # Outside the Sanctuary — Graphic Design Guideline
 
-版本：2.0
+版本：2.1
 范围：游戏 HUD、Wiki、项目展示页、静态图形与后续视觉资产。
 上游方法参考：emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d（MIT）。
 
